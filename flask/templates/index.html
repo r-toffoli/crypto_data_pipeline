@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto Prices & Volume</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #price-chart, #volume-chart {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cryptocurrency Prices & Volume</h1>
+    <select id="crypto-selector">
+        <option value="BTC">Bitcoin</option>
+        <option value="ETH">Ethereum</option>
+        <!-- Add more cryptocurrencies as needed -->
+    </select>
+    
+    <!-- Separate divs for price and volume charts -->
+    <div id="price-chart"></div>
+    <div id="volume-chart"></div>
+    
+    <script>
+        function fetchData(crypto) {
+            $.getJSON(`/data/${crypto}`, function(data) {
+                var timestamps = data.price.map(d => new Date(d[0] * 1000));
+                var prices = data.price.map(d => d[1]);
+                var volumes = data.volume.map(d => d[1]);
+
+                // Trace for price data
+                var priceTrace = {
+                    x: timestamps,
+                    y: prices,
+                    mode: 'lines',
+                    name: 'Price',
+                    type: 'scatter'
+                };
+
+                // Trace for volume data
+                var volumeTrace = {
+                    x: timestamps,
+                    y: volumes,
+                    mode: 'lines',
+                    name: 'Volume',
+                    type: 'scatter'
+                };
+
+                // Layout for price chart
+                var priceLayout = {
+                    title: `${crypto} Price`,
+                    xaxis: { title: 'Time' },
+                    yaxis: { title: 'Price' }
+                };
+
+                // Layout for volume chart
+                var volumeLayout = {
+                    title: `${crypto} Volume`,
+                    xaxis: { title: 'Time' },
+                    yaxis: { title: 'Volume' }
+                };
+
+                // Plot the price chart
+                Plotly.newPlot('price-chart', [priceTrace], priceLayout);
+
+                // Plot the volume chart
+                Plotly.newPlot('volume-chart', [volumeTrace], volumeLayout);
+            });
+        }
+
+        $(document).ready(function() {
+            var selectedCrypto = $('#crypto-selector').val();
+            fetchData(selectedCrypto);
+
+            $('#crypto-selector').change(function() {
+                selectedCrypto = $(this).val();
+                fetchData(selectedCrypto);
+            });
+
+            // Refresh the data every minute
+            setInterval(function() {
+                fetchData(selectedCrypto);
+            }, 60000);
+        });
+    </script>
+</body>
+</html>
