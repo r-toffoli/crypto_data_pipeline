@@ -15,8 +15,8 @@ The project is built arround a Lambda architecture:
 - **Serving Layer:** Redis is used to store data using the TimeSeries format.
 
 
-![alt text](https://github.com/r-toffoli/crypto_data_pipeline/main/images/architecture_projet.png?raw=true)
+![Alt text](images/architecture_projet.png)
 
 ## Overview
 
-![alt text](https://github.com/r-toffoli/crypto_data_pipeline/main/images/live_data_dashboard.png?raw=true)
+![Alt text](images/live_data_dashboard.png)
