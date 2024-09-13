@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Historical Crypto Prices & Volume</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 32px;
+            letter-spacing: 1px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            color: #333;
+            margin-bottom: 20px;
+            width: 300px;
+        }
+
+        #price-chart, #volume-chart {
+            width: 90%;
+            max-width: 1000px;
+            height: 400px;
+            margin-bottom: 50px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #2c3e50;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            background-color: #3498db;
+            border-radius: 5px;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+            background-color: #2c3e50;
+            color: #fff;
+            width: 100%;
+            position: relative;
+            bottom: 0;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Live Data</a>
+        <a href="/historic">Historical Data</a>
+    </div>
+    <h1>Historical Cryptocurrency Prices & Volume</h1>
+    <select id="crypto-selector">
+        <option value="BTC">Bitcoin</option>
+        <option value="ETH">Ethereum</option>
+        <!-- Add more cryptocurrencies as needed -->
+    </select>
+    
+    <div id="price-chart"></div>
+    <div id="volume-chart"></div>
+    
+    <script>
+        function fetchHistoricData(crypto) {
+            $.getJSON(`/historic_data/${crypto}`, function(data) {
+                var timestamps = data.price.map(d => new Date(d[0] * 1000));
+                var prices = data.price.map(d => d[1]);
+                var volumes = data.volume.map(d => d[1]);
+
+                // Fetch additional data for moving average and Bollinger Bands
+                $.getJSON(`/moving_average/${crypto}`, function(movingAvgData) {
+                    $.getJSON(`/bollinger_bands/${crypto}`, function(bollingerData) {
+                        var movingAvg = movingAvgData.map(d => d[1]);
+                        var bollingerUpper = bollingerData.upper.map(d => d[1]);
+                        var bollingerLower = bollingerData.lower.map(d => d[1]);
+
+                        // Trace for price data
+                        var priceTrace = {
+                            x: timestamps,
+                            y: prices,
+                            mode: 'lines',
+                            name: 'Price',
+                            type: 'scatter'
+                        };
+
+                        // Trace for moving average
+                        var movingAvgTrace = {
+                            x: timestamps,
+                            y: movingAvg,
+                            mode: 'lines',
+                            name: '90 Days Moving Average',
+                            line: { color: 'red' },
+                            type: 'scatter'
+                        };
+
+                        // Trace for Bollinger Bands
+                        var bollingerUpperTrace = {
+                            x: timestamps,
+                            y: bollingerUpper,
+                            mode: 'lines',
+                            name: '90 Days Upper Bollinger Band',
+                            line: { color: 'green' },
+                            type: 'scatter'
+                        };
+
+                        var bollingerLowerTrace = {
+                            x: timestamps,
+                            y: bollingerLower,
+                            mode: 'lines',
+                            name: '90 Days Lower Bollinger Band',
+                            line: { color: 'green' },
+                            type: 'scatter'
+                        };
+
+                        // Layout for price chart
+                        var priceLayout = {
+                            title: `${crypto} Price`,
+                            xaxis: { title: 'Time' },
+                            yaxis: { title: 'Price' }
+                        };
+
+                        // Plot the price chart with moving average and Bollinger Bands
+                        Plotly.newPlot('price-chart', [priceTrace, movingAvgTrace, bollingerUpperTrace, bollingerLowerTrace], priceLayout);
+
+                        // Trace for volume data
+                        var volumeTrace = {
+                            x: timestamps,
+                            y: volumes,
+                            mode: 'lines',
+                            name: 'Volume',
+                            type: 'scatter'
+                        };
+
+                        // Layout for volume chart
+                        var volumeLayout = {
+                            title: `${crypto} Volume`,
+                            xaxis: { title: 'Time' },
+                            yaxis: { title: 'Volume' }
+                        };
+
+                        // Plot the volume chart
+                        Plotly.newPlot('volume-chart', [volumeTrace], volumeLayout);
+                    });
+                });
+            });
+        }
+
+        $(document).ready(function() {
+            var selectedCrypto = $('#crypto-selector').val();
+            fetchHistoricData(selectedCrypto);
+
+            $('#crypto-selector').change(function() {
+                selectedCrypto = $(this).val();
+                fetchHistoricData(selectedCrypto);
+            });
+
+            // Refresh the data every minute
+            setInterval(function() {
+                fetchHistoricData(selectedCrypto);
+            }, 60000);
+        });
+    </script>
+</body>
+</html>

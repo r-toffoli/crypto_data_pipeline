@@ -1,7 +1,7 @@
 from redis import StrictRedis
 
 red = StrictRedis(host='localhost', port=6379)
-
+'''
 red.delete('LIVE_PRICE:BTC')
 red.delete('LIVE_PRICE:ETH')
 red.delete('LIVE_PRICE:USDT')
@@ -27,3 +27,10 @@ red.delete('LIVE_VOLUME:WTRX')
 red.delete('LIVE_VOLUME:DOGE')
 red.delete('LIVE_VOLUME:TRX')
 red.delete('LIVE_VOLUME:TON11419')
+'''
+
+red.delete('90_DAYS_PRICE:BTC')
+red.delete('90_DAYS_MOVING_AVERAGE_4D:BTC')
+red.delete('90_DAYS_UP_BOLLINGER_BAND_4D:BTC')
+red.delete('90_DAYS_LOW_BOLLINGER_BAND_4D:BTC')
+red.delete('90_DAYS_VOLUME:BTC')

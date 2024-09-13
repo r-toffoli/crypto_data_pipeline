@@ -5,7 +5,6 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        /* General styles */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f7fa;
@@ -55,6 +54,25 @@
             box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
         }
 
+        .navbar {
+            width: 100%;
+            background-color: #2c3e50;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            background-color: #3498db;
+            border-radius: 5px;
+        }
+
         /* Style for footer */
         footer {
             margin-top: 50px;
@@ -74,6 +92,10 @@
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="/">Live Data</a>
+        <a href="/historic">Historical Data</a>
+    </div>
     <h1>Cryptocurrency Prices & Volume</h1>
     <select id="crypto-selector">
         <option value="BTC">Bitcoin</option>
