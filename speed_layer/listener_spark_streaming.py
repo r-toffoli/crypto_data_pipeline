@@ -95,7 +95,7 @@ if __name__ == "__main__":
             rts.madd(list_price)
             rts.madd(list_volume)
 
-            print("Imported:", list_price[0][0])
+            print("Data imported")
 
     # Convert each RDD in the DStream to a DataFrame and process it
     lines.foreachRDD(process_rdd)

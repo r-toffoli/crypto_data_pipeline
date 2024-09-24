@@ -59,7 +59,7 @@ def scrape_data():
         web_page = requests.get(page,headers = headers)
         soup = bs(web_page.text, 'html.parser')
 
-        stock_table = soup.find('table', class_='markets-table freeze-col yf-42jv6g fixedLayout')
+        stock_table = soup.find('table', class_='markets-table freeze-col yf-1dbt8wv fixedLayout')
         tr_tag_list = stock_table.find_all('tr')
 
         for tr_tag in tr_tag_list[1:]:

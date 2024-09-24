@@ -95,10 +95,26 @@
     </div>
     <h1>Historical Cryptocurrency Prices & Volume</h1>
     <select id="crypto-selector">
-        <option value="BTC">Bitcoin</option>
-        <option value="ETH">Ethereum</option>
-        <!-- Add more cryptocurrencies as needed -->
+        <!-- Options will be dynamically populated here -->
     </select>
+
+    <script>
+        // Fetch the cryptocurrency data from the backend and populate the select element
+        $(document).ready(function() {
+            $.getJSON('/get_crypto_data', function(data) {
+                const selectElement = $('#crypto-selector');
+
+                // Loop through the returned data and create option elements
+                data.forEach(function(crypto) {
+                    selectElement.append(
+                        $('<option></option>')
+                        .attr('value', crypto.acronym)
+                        .text(crypto.name)
+                    );
+                });
+            });
+        });
+    </script>
     
     <div id="price-chart"></div>
     <div id="volume-chart"></div>

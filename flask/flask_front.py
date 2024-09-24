@@ -3,6 +3,7 @@ from redistimeseries.client import Client
 import redis
 import json
 import time
+import csv
 
 app = Flask(__name__)
 
@@ -16,6 +17,25 @@ def index():
 @app.route('/historic')
 def historic():
     return render_template('historic.html')
+
+
+# Function to read and parse the CSV file
+def get_crypto_details():
+    crypto_details = []
+    with open('../batch_layer/crypto_details.csv', newline='') as csvfile:
+        csvreader = csv.DictReader(csvfile)
+        for row in csvreader:
+            crypto_details.append({
+                'acronym': row['acronym'],
+                'name': row['name']
+            })
+    return crypto_details
+
+@app.route('/get_crypto_data')
+def get_crypto_data():
+    crypto_list = get_crypto_details()
+    return jsonify(crypto_list)
+
 
 @app.route('/data/<crypto>')
 def get_data(crypto):
@@ -83,8 +103,8 @@ def get_moving_average(crypto):
 def get_bollinger_bands(crypto):
     try:
         # Fetch Bollinger Bands data
-        upper_band = rts.range('90_DAYS_UP_BOLLINGER_BAND_4D:BTC', 1720000000, 1825840100)
-        lower_band = rts.range('90_DAYS_LOW_BOLLINGER_BAND_4D:BTC', 1720000000, 1825840100)
+        upper_band = rts.range(f'90_DAYS_UP_BOLLINGER_BAND_4D:{crypto}', 1720000000, 1825840100)
+        lower_band = rts.range(f'90_DAYS_LOW_BOLLINGER_BAND_4D:{crypto}', 1720000000, 1825840100)
         result = {
             'upper': [[int(item[0]), float(item[1])] for item in upper_band],
             'lower': [[int(item[0]), float(item[1])] for item in lower_band]
