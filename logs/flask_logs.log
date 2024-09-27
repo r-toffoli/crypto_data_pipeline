@@ -1,0 +1,53 @@
+ * Serving Flask app 'flask_front'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 128-631-671
+127.0.0.1 - - [24/Sep/2024 17:22:19] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:22:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [24/Sep/2024 17:22:19] "GET /get_crypto_data HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:22:19] "GET /data/null HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:22:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:22:21] "GET /get_crypto_data HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:22:21] "GET /data/null HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:22:22] "GET /data/ETH HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:22:36] "GET /data/USDT HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:22:39] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:23:21] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:24:21] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:24:50] "GET /data/ETH HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:24:52] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:25:21] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:26:16] "GET /data/USDT HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:26:18] "GET /data/ETH HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:26:21] "GET /data/ETH HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:26:22] "GET /data/USDT HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:27:21] "GET /data/USDT HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:28:03] "GET /data/BNB HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:28:04] "GET /data/USDT HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:28:06] "GET /data/BNB HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:28:21] "GET /data/BNB HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:29:21] "GET /data/BNB HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:30:21] "GET /data/BNB HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:31:21] "GET /data/BNB HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:32:21] "GET /data/BNB HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:33:14] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:33:22] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:34:22] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:35:22] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:36:22] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:37:22] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:38:22] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:39:22] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:40:22] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:40:26] "GET /data/ETH HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:40:30] "GET /data/USDT HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:40:34] "GET /data/WSTETH HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:40:40] "GET /data/BCH HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:40:43] "GET /data/DAI HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:40:45] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:41:22] "GET /data/BTC HTTP/1.1" 200 -
+127.0.0.1 - - [24/Sep/2024 17:42:22] "GET /data/BTC HTTP/1.1" 200 -

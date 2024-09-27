@@ -15,10 +15,3 @@ echo "Launched Live Data Producer"
 
 ./sub_proc_historical_data.sh > ../logs/sub_proc_historical_data.log 2>&1 &
 echo "Launched Historical Data Pipeline"
-
-
-# Run a script that needs to execute once and wait for it to finish
-#python /path/to/your/script2.py
-
-# Wait for background processes to complete (optional if you want to wait for them)
-#wait
