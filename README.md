@@ -19,6 +19,6 @@ The project is built around a Lambda architecture:
 
 ## Overview
 
-![Alt text](images/live_dashboard.png)
+![Alt text](images/live_dashboard.gif)
 
 ![Alt text](images/historical_dashboard.png)
