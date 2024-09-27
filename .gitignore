@@ -1,0 +1,7 @@
+batch_layer/api_key.csv
+logs/live_data_producer_logs.log
+logs/sub_proc_historical_data.log
+logs/flask_logs.log
+logs/hdfs_to_redis_logs.log
+logs/historical_data_producer_logs.log
+logs/live_data_listener_logs.log
