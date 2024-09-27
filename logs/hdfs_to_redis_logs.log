@@ -1,6 +1,0 @@
-24/09/27 11:01:12 WARN Utils: Your hostname, romain-Lenovo-ideapad-Y700-15ISK resolves to a loopback address: 127.0.1.1; using 192.168.1.36 instead (on interface wlp8s0)
-24/09/27 11:01:12 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-24/09/27 11:01:13 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-ls: Call From romain-Lenovo-ideapad-Y700-15ISK/127.0.1.1 to localhost:9000 failed on connection excls: Call From romain-Lenovo-ideapad-Y700-15ISK/127.0.1.1 to localhost:9000 failed on connection excls: Call From romain-Lenovo-ideapad-Y700-15ISK/127.0.1.1 to localhost:9000 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
