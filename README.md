@@ -7,15 +7,15 @@ This project aims to create a data pipeline that fetches, stores and transforms 
 
 ## Architecture
 
-The project is built around a Lambda architecture:
+The project is built with a Lambda architecture:
 - **Speed Layer:** Basic data (price, volume) is regularly scraped (every minute) from Yahoo Finance website and processed with Spark Streaming and then uploaded to redis.
 - **Batch Layer:**
-    - For each cryptocurrency, a sample containing the price and volume data of the last 90 days is extracted periodically (every hour) with CoinGecko API and uploaded to HDFS.
-    - Data is processed with Spark to calculate measures such as moving average or forecasts and uploaded in Redis.
+    - For each cryptocurrency, a sample containing the price and volume data of the last 90 days is extracted periodically (every hour) with CoinGecko API and uploaded to Amazon S3.
+    - Data is processed with Spark in Amazon EMR to calculate measures such as moving average or forecasts and uploaded in Redis.
 - **Serving Layer:** Redis is used to store data using the TimeSeries format.
 
 
-![Alt text](images/architecture_projet.png)
+![Alt text](images/architecture_projet_cloud.png)
 
 ## Overview
 
